@@ -17,7 +17,7 @@ Utility to manage and control LSI/megaraid controllers
 
 %prep
 
-%setup -q 
+%setup -q -n %{name}-%{version}
 %{__install} -m 0755 %{name} /usr/sbin/%{name}
 %{__install} -m 0755 libstorelibir-2.so.14.07-0 /usr/lib64/libstorelibir-2.so.14.07-0
 
