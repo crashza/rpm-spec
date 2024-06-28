@@ -7,7 +7,8 @@ Group:          Applications/Communications
 License:        Proprietary
 URL:            http://www.lsilogic.com/
 
-Source0:        https://github.com/crashza/rpm-spec/blob/main/src/%{name}-%{version}.tar.gz
+Source0: https://github.com/crashza/rpm-spec/raw/main/src/megacli-8.7.14.tar.gz
+
 Requires:       bash
 BuildArch:      x86_64
 
