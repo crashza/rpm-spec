@@ -4,7 +4,7 @@
 %define debug_package %{nil}
 
 Name:		opensips-cp		
-Version:	9.3.2
+Version:	9.3.4
 Release:	1%{?dist}
 Summary:	OpenSIPS Control Panel
 
@@ -71,6 +71,8 @@ EOF
 
 
 %changelog
+* Thu Oct 3 2024 Trevor Steyn <trevor@webon.co.za> - 9.3.4
+- New version
 * Tue Sep 5 2023 Trevor Steyn <trevor@webon.co.za> - 9.3.2
 - New version and removed patch
 * Tue Dec 11 2018 Trevor Steyn <trevor@webon.co.za> - 8.2.4-1
