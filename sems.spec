@@ -21,7 +21,7 @@ BuildRequires:	lame-devel
 BuildRequires:	libevent-devel
 BuildRequires:	libmpg123-devel
 BuildRequires:	libsamplerate-devel
-BuildRequires:  mysql-connector-c++-devel
+BuildRequires:  mariadb-connector-c-devel
 BuildRequires:	openssl-devel
 BuildRequires:	opus-devel
 BuildRequires:	spandsp-devel
@@ -579,7 +579,7 @@ getent passwd %{name} >/dev/null || \
 %{_libdir}/%{name}/dsm/mod_dlg.so
 %{_libdir}/%{name}/dsm/mod_groups.so
 %{_libdir}/%{name}/dsm/mod_monitoring.so
-%{_libdir}/%{name}/dsm/mod_mysql.so
+##%{_libdir}/%{name}/dsm/mod_mysql.so
 %if 0%{?_with_python}
 %{_libdir}/%{name}/dsm/mod_py.so
 %endif
