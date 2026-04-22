@@ -1,6 +1,6 @@
 Name:       rtpengine
 Version:    mr26.0.1.1
-Release:    4%{?dist}
+Release:    6%{?dist}
 Summary:    The Sipwise NGCP rtpengine daemon
 Group:      System Environment/Daemons
 License:    GPLv3
@@ -46,7 +46,7 @@ BuildRequires: gcc-toolset-13
 %endif
 Requires(pre):	shadow-utils
 %if 0%{?rhel} >= 8
-BuildRequires:	pkgconfig(libmnl) pkgconfig(libnftnl) pandoc ncurses-devel
+BuildRequires:	pkgconfig(libmnl) pkgconfig(libnftnl) pandoc ncurses-devel systemd-devel
 %endif
 %if 0%{?rhel} >= 9
 BuildRequires:	pkgconfig(libiptc)
@@ -68,7 +68,7 @@ drop-in replacement for any of the other available RTP and media proxies.
 %package kernel
 Summary:	NGCP rtpengine in-kernel packet forwarding
 Group:		System Environment/Daemons
-BuildRequires:	gcc make %{redhat_rpm_config} iptables-devel
+BuildRequires:	gcc make %{redhat_rpm_config} iptables-devel nftables
 Requires:	%{name}%{?_isa} = %{version}-%{release}
 Requires:	%{name}-dkms = %{version}-%{release}
 
@@ -161,6 +161,8 @@ RTPENGINE_VERSION="\"%{version}-%{release}\"" make DESTDIR=%{buildroot} with_tra
 %if 0%{?has_systemd_dirs}
 install -D -p -m644 el/%{binname}.service \
 	%{buildroot}%{_unitdir}/%{binname}.service
+sed -i -e "s/ngcp-rtpengine/root/g" el/%{binname}.service \
+	%{buildroot}%{_unitdir}/%{binname}.service
 %else
 install -D -p -m755 el/%{binname}.init \
 	%{buildroot}%{_initrddir}/%{name}
@@ -175,6 +177,8 @@ install -D -p -m755 el/%{binname}-recording.init \
 %endif
 %endif
 install -D -p -m644 el/%{binname}.sysconfig \
+	%{buildroot}%{_sysconfdir}/sysconfig/%{binname}
+sed -i -e "s/ngcp-rtpengine/rtpengine/g" el/%{binname}.sysconfig \
 	%{buildroot}%{_sysconfdir}/sysconfig/%{binname}
 %if 0%{?with_transcoding} > 0
 install -D -p -m644 el/%{binname}-recording.sysconfig \
